@@ -1,4 +1,4 @@
-'use client';
+'use client'; 
 
 import { useWallet } from '@solana/wallet-adapter-react';
 import { ExplorerLink } from '../cluster/cluster-ui';

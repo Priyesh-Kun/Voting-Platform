@@ -1,0 +1,520 @@
+{
+  "address": "VothziLdj4b5jhAqhxyiB8bg6zssrQz121dXL6XXiQg",
+  "metadata": {
+    "name": "voting",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "cast_vote",
+      "discriminator": [
+        20,
+        212,
+        15,
+        189,
+        69,
+        180,
+        69,
+        151
+      ],
+      "accounts": [
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "publisher",
+          "relations": [
+            "poll"
+          ]
+        },
+        {
+          "name": "voter",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "poll",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  79,
+                  76,
+                  76,
+                  95,
+                  65,
+                  67,
+                  67,
+                  79,
+                  85,
+                  78,
+                  84
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "publisher"
+              },
+              {
+                "kind": "arg",
+                "path": "poll_id"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "choices",
+          "type": {
+            "vec": {
+              "defined": {
+                "name": "Choice"
+              }
+            }
+          }
+        },
+        {
+          "name": "_poll_id",
+          "type": "u32"
+        }
+      ]
+    },
+    {
+      "name": "create_poll",
+      "discriminator": [
+        182,
+        171,
+        112,
+        238,
+        6,
+        219,
+        14,
+        110
+      ],
+      "accounts": [
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "publisher",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  83,
+                  84,
+                  65,
+                  84,
+                  69
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "poll",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  79,
+                  76,
+                  76,
+                  95,
+                  65,
+                  67,
+                  67,
+                  79,
+                  85,
+                  78,
+                  84
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "publisher"
+              },
+              {
+                "kind": "account",
+                "path": "state.last_poll",
+                "account": "State"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "statement",
+          "type": "string"
+        },
+        {
+          "name": "choices",
+          "type": {
+            "vec": {
+              "defined": {
+                "name": "Choice"
+              }
+            }
+          }
+        },
+        {
+          "name": "of_type",
+          "type": "u8"
+        },
+        {
+          "name": "time",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "delete_poll",
+      "discriminator": [
+        156,
+        80,
+        237,
+        248,
+        65,
+        44,
+        143,
+        152
+      ],
+      "accounts": [
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "publisher",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "poll",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  79,
+                  76,
+                  76,
+                  95,
+                  65,
+                  67,
+                  67,
+                  79,
+                  85,
+                  78,
+                  84
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "publisher"
+              },
+              {
+                "kind": "arg",
+                "path": "poll_id"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "_poll_id",
+          "type": "u32"
+        }
+      ]
+    },
+    {
+      "name": "end_poll",
+      "discriminator": [
+        203,
+        232,
+        109,
+        145,
+        93,
+        37,
+        203,
+        68
+      ],
+      "accounts": [
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "publisher",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "poll",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  80,
+                  79,
+                  76,
+                  76,
+                  95,
+                  65,
+                  67,
+                  67,
+                  79,
+                  85,
+                  78,
+                  84
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "publisher"
+              },
+              {
+                "kind": "arg",
+                "path": "poll_id"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "_poll_id",
+          "type": "u32"
+        },
+        {
+          "name": "time",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "initialize_state",
+      "discriminator": [
+        190,
+        171,
+        224,
+        219,
+        217,
+        72,
+        199,
+        176
+      ],
+      "accounts": [
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  83,
+                  84,
+                  65,
+                  84,
+                  69
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Poll",
+      "discriminator": [
+        110,
+        234,
+        167,
+        188,
+        231,
+        136,
+        153,
+        111
+      ]
+    },
+    {
+      "name": "State",
+      "discriminator": [
+        216,
+        146,
+        107,
+        94,
+        104,
+        75,
+        182,
+        177
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "AlreadyVoted",
+      "msg": "Voter has already voted"
+    },
+    {
+      "code": 6001,
+      "name": "LengthExceeded",
+      "msg": "Max statement length exceeded"
+    },
+    {
+      "code": 6002,
+      "name": "AlreadyEnded",
+      "msg": "The Poll already ended"
+    }
+  ],
+  "types": [
+    {
+      "name": "Choice",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "choice_id",
+            "type": "u8"
+          },
+          {
+            "name": "statement",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Poll",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "publisher",
+            "type": "pubkey"
+          },
+          {
+            "name": "poll_id",
+            "type": "u32"
+          },
+          {
+            "name": "statement",
+            "type": "string"
+          },
+          {
+            "name": "choices",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "Choice"
+                }
+              }
+            }
+          },
+          {
+            "name": "of_type",
+            "type": "u8"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "ended_at",
+            "type": "i64"
+          },
+          {
+            "name": "is_active",
+            "type": "bool"
+          },
+          {
+            "name": "votes",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "Vote"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "State",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "last_poll",
+            "type": "u32"
+          },
+          {
+            "name": "active_polls",
+            "type": "u32"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Vote",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "voter",
+            "type": "pubkey"
+          },
+          {
+            "name": "choices",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "Choice"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

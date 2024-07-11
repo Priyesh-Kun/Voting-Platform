@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { AppHero } from '../ui/ui-layout';
 
 const links: { label: string; href: string }[] = [

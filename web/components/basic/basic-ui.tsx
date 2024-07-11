@@ -1,4 +1,4 @@
-'use client';
+'use client'; 
 
 import { Keypair } from '@solana/web3.js';
 import { useBasicProgram } from './basic-data-access';
